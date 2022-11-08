@@ -1,7 +1,7 @@
 <template>
-  <h1>Interesting Fact about years</h1>
-  <SelectNumbers @add-random-year="addRandomYear"/>
-  <DisplayYear @delete-year="deleteYear" v-model:yearnumber="yearnumber"/>
+  <h1>Find historical events in...</h1>
+  <SelectNumbers @add-new-year-fact="addNewYearFact"/>
+  <DisplayYear :yearfacts="yearfacts"/>
 </template>
 
 <script>
@@ -12,7 +12,7 @@ export default {
   name: 'App',
   data() {
     return {
-      yearnumber: []
+      yearfacts: []
     }
   },
   components: {
@@ -20,20 +20,27 @@ export default {
     DisplayYear
   },
   methods: {
-    addRandomYear(year) {
-      console.log(year);
-      this.yearnumber.push(year);
+    addNewYearFact(text) {
+      this.yearfacts.push(text);
     },
-    deleteYear(index) {
-      this.yearnumber.splice(index, 1);
-    }
   }
 }
 </script>
 
 <style>
+body {
+  background-color: lavender;
+}
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 22pt;
+  font-weight:lighter;
+  padding-top: 40px;
+  padding-bottom: 30px;
+}
+
 #app {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Lucida Console", "Courier New", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

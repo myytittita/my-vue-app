@@ -1,11 +1,10 @@
 <template>
-    <h2>Random Year</h2>
+    <h2>🗓️ Here is what happened 🤓</h2>
     <ul>
-        <li v-for="(year, index) in yearnumber" v-bind:key="index">
+        <li v-for="(fact, index) in yearfacts" v-bind:key="index">
             <div>
-                {{ year }}
+                {{ fact }}
             </div>
-            <button @click="deleteYear(index)">✖</button>
         </li>
     </ul>
 </template>
@@ -13,17 +12,17 @@
 <script>
 export default {
     name: 'DisplayYear',
-    props: ['yearnumber'],
-    emits: ['deleteYear'],
-    methods: {
-        deleteYear(index) {
-            this.$emit('deleteYear', index);
-        }
-    }
+    props: ['yearfacts'],
 }
 </script>
 
 <style scoped>
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    font-size: 14pt;
+}
+
 ul {
     list-style-type: none;
     width: 50%;
@@ -33,9 +32,12 @@ ul {
 
 li {
     padding: 0.25em;
-    border-bottom: 2px groove coral;
-    margin-bottom: 0.25em;
-    display: flex;
-    justify-content: space-between;
+    border-left: 10px solid #a30157;
+    background-color: thistle;
+    margin-bottom: 1em;
+    padding: 40px;
+    position: absolute;
+    width: 45%;
+    height: 70px;
 }
 </style>
