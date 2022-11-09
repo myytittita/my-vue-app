@@ -11,21 +11,31 @@ const baseUrl = 'http://numbersapi.com/';
 
 export default {
   name: 'SelectNumbers',
-  emits: ['addNewYearFact'],
+  emits: ['addNewYearFacts'],
   data() {
     return {
-      year: ''
+      year: '',
+      facts: []
     }
   },
   
   methods: {
     getYearInfo() {
       let reqUrl = baseUrl + this.year.toString() + '/year?json';
-      console.log(reqUrl);
 
       fetch(reqUrl)
         .then((response) => response.json())
-        .then((data) => this.$emit('addNewYearFact', data));
+        .then((data) => {
+          this.facts.push(data);
+
+          if (this.facts.length < 10) {
+            this.getYearInfo();
+          } else {
+            this.$emit('addNewYearFacts', { 'year': this.year, 'facts': this.facts });
+            this.facts = [];
+          }
+        }
+      )
     }
   }
 }
