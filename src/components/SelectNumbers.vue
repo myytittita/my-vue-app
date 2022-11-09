@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>HI MY NAME IS WHAT MY NAME IS WHO MY NAME IS KARL YOUR INSTRUCTOR</h1>
     <input type="number" min="0" max="2022" step="1" placeholder="Enter Year" v-model="year"/>
     <button @click="getYearInfo">Search Events</button>
     <br>
@@ -21,12 +20,12 @@ export default {
   
   methods: {
     getYearInfo() {
-      let reqUrl = baseUrl + this.year.toString() + '/year';
+      let reqUrl = baseUrl + this.year.toString() + '/year?json';
       console.log(reqUrl);
 
       fetch(reqUrl)
-        .then((response) => response.text())
-        .then((text) => this.$emit('addNewYearFact', text));
+        .then((response) => response.json())
+        .then((data) => this.$emit('addNewYearFact', data));
     }
   }
 }
