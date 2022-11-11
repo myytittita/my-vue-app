@@ -1,4 +1,7 @@
 <template>
+    <!-- create a dropdown for all the years searched -->
+    <!-- create a local data property called 'currentYear' -->
+    <!-- use currentYear to pick which list of facts to show -->
     <h2>🗓️ Here is what happened 🤓</h2>
     <ul v-for="(facts, year, index) in yearfacts" v-bind:key="index">
         <li v-for="(fact, index) in facts" v-bind:key="index">
@@ -10,7 +13,7 @@
 <script>
 export default {
     name: 'DisplayYear',
-    props: ['yearfacts'],
+    props: ['years', 'yearfacts'],
 }
 </script>
 

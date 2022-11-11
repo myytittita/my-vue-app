@@ -1,7 +1,7 @@
 <template>
   <h1>Find historical events in...</h1>
   <SelectNumbers @add-new-year-facts="addNewYearFacts"/>
-  <DisplayYear :yearfacts="yearfacts"/>
+  <DisplayYear :years="years" :yearfacts="yearfacts"/>
 </template>
 
 <script>
@@ -12,6 +12,7 @@ export default {
   name: 'App',
   data() {
     return {
+      years: [],
       yearfacts: {}
     }
   },
@@ -21,6 +22,7 @@ export default {
   },
   methods: {
     addNewYearFacts(data) {
+      this.years.push(data.year);
       this.yearfacts[data.year] = data.facts;
       console.log(this.yearfacts);
     },
