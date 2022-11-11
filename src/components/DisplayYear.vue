@@ -1,10 +1,8 @@
 <template>
     <h2>🗓️ Here is what happened 🤓</h2>
-    <ul>
-        <li v-for="(fact, index) in yearfacts" v-bind:key="index">
-            <div>
-                {{ fact }}
-            </div>
+    <ul v-for="(facts, year, index) in yearfacts" v-bind:key="index">
+        <li v-for="(fact, index) in facts" v-bind:key="index">
+           {{ fact.text }}
         </li>
     </ul>
 </template>
@@ -36,7 +34,7 @@ li {
     background-color: thistle;
     margin-bottom: 1em;
     padding: 40px;
-    position: absolute;
+    /* position: absolute; */
     width: 45%;
     height: 70px;
 }
