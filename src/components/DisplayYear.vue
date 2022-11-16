@@ -2,7 +2,7 @@
     <!-- create a dropdown for all the years searched -->
     <!-- create a local data property called 'currentYear' -->
     <!-- use currentYear to pick which list of facts to show -->
-    <select>
+    <select v-if="!!currentYear" v-model="currentYear">
         <option v-for="(facts, year, index) in yearfacts" v-bind:key="index">
             <div @click="getCurrentYear">
                 {{ year }}
@@ -11,8 +11,8 @@
     </select>
 
     <h2>🗓️ Here is what happened 🤓</h2>
-    <ul v-for="(facts, year, index) in yearfacts" v-bind:key="index">
-        <li v-for="(fact, index) in facts" v-bind:key="index">
+    <ul v-if="!!currentYear">
+        <li v-for="(fact, index) in yearfacts[currentYear]" v-bind:key="index">
            {{ fact.text }}
         </li>
     </ul>
@@ -21,7 +21,21 @@
 <script>
 export default {
     name: 'DisplayYear',
-    props: ['years', 'yearfacts', 'currentYear'],
+    props: ['years', 'yearfacts'],
+    data() {
+        return {
+            currentYear: null
+        }
+    },
+    watch: {
+        years: {
+            handler: function(years) {
+                this.currentYear = years[years.length - 1];
+            },
+            deep: true
+        }
+    }
+
 }
 </script>
 

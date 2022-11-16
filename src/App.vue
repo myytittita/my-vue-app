@@ -24,7 +24,6 @@ export default {
     addNewYearFacts(data) {
       this.years.push(data.year);
       this.yearfacts[data.year] = data.facts;
-      console.log(this.yearfacts);
     },
   }
 }
